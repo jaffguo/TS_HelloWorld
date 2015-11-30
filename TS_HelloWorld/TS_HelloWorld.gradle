@@ -1,0 +1,19 @@
+apply plugin: 'application'
+
+mainClassName = 'de.fraunhofer.iosb.testrunner.JMSTestRunner'
+
+dependencies {
+	compile     msg134-ivct-framework:IEEE1516e:${ivctVersion}
+	compile     msg134-ivct-framework:TC:${ivctVersion}
+	compile     msg134-ivct-framework:MessagingHelpers:${ivctVersion}
+	compile     libraries.slf4j_api
+	
+	runtime		libraries.actimemqClient
+	runtime		libraries.logback_classic
+	runtime		libraries.logback_core
+	
+	runtime     libraries.slf4j_jcl_over_slf4j
+	runtime     libraries.slf4j_jul_to_slf4j
+	runtime     libraries.slf4j_log4j_over_slf4j
+}
+
