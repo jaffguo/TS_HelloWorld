@@ -3,9 +3,10 @@ apply plugin: 'application'
 mainClassName = 'de.fraunhofer.iosb.testrunner.JMSTestRunner'
 
 dependencies {
-	compile     msg134-ivct-framework:IEEE1516e:${ivctVersion}
-	compile     msg134-ivct-framework:TC:${ivctVersion}
-	compile     msg134-ivct-framework:MessagingHelpers:${ivctVersion}
+	compile     group: 'msg134-ivct-framework', name: 'IEEE1516e', version: ivctVersion
+	compile     group: 'msg134-ivct-framework', name: 'TC', version: ivctVersion
+	compile     group: 'msg134-ivct-framework', name: 'MessagingHelpers', version: ivctVersion
+
 	compile     libraries.slf4j_api
 	
 	runtime		libraries.actimemqClient
