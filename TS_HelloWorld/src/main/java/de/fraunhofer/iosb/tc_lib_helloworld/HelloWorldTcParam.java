@@ -1,8 +1,6 @@
 package de.fraunhofer.iosb.tc_lib_helloworld;
 
 import de.fraunhofer.iosb.tc_lib.IVCT_TcParam;
-import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -18,7 +16,6 @@ public class HelloWorldTcParam implements IVCT_TcParam {
     private final String rtiHost            = "localhost";
     private final String settingsDesignator = "crcAddress=" + this.rtiHost;
     private final int    fileNum            = 1;
-    private File[]       fddFiles           = new File[this.fileNum];
     private URL[]        urls               = new URL[this.fileNum];
     private final String basePath           = "build/resources/main/";
     private long         sleepTimeCycle     = 1000;
@@ -27,16 +24,8 @@ public class HelloWorldTcParam implements IVCT_TcParam {
 
 
     public HelloWorldTcParam() {
-        this.fddFiles[0] = new File(this.basePath + "HelloWorld.xml");
-        for (int i = 0; i < this.fileNum; i++) {
-            try {
-                this.urls[i] = this.fddFiles[i].toURI().toURL();
-            }
-            catch (final MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
+        this.urls[0] = this.getClass().getClassLoader().getResource("HelloWorld.xml");
+
     }
 
 
