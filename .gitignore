@@ -17,6 +17,7 @@ hs_err_pid*
 *.project
 .settings
 .metadata
+.recommenders
 bin
 build
 /.gradle

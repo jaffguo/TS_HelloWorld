@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class TC0001 extends AbstractTestCase {
     FederateHandle                              federateHandle;
     private static Logger                       logger                         = LoggerFactory.getLogger(TC0001.class);
-    private String                              federateName                   = "B";
+    private String                              federateName                   = "IVCT";
 
     // Build test case parameters to use
     final static HelloWorldTcParam              helloWorldTcParam              = new HelloWorldTcParam();
@@ -81,8 +81,8 @@ public class TC0001 extends AbstractTestCase {
         for (int i = 0; i < 10; i++) {
 
             // Check if a hello world message has arrived
-            if (helloWorldBaseModel.getMessageStatus()) {
-                throw new TcInconclusive("Did not receive any \"HelloWorld\" message");
+            if (helloWorldBaseModel.getReflectMessageStatus()) {
+                throw new TcInconclusive("Did not receive any \"Population\" message");
             }
 
             // Test the population increase based on the previous and the current values within a percent range tolerance
