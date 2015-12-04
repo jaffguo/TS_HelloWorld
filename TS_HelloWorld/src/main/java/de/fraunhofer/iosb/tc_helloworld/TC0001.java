@@ -80,6 +80,11 @@ public class TC0001 extends AbstractTestCase {
         // Loop a number of cycles and test whether the population increases according to the conformance statement
         for (int i = 0; i < 10; i++) {
 
+            // Check if a hello world message has arrived
+            if (helloWorldBaseModel.getMessageStatus()) {
+                throw new TcInconclusive("Did not receive any \"HelloWorld\" message");
+            }
+
             // Test the population increase based on the previous and the current values within a percent range tolerance
             if (helloWorldBaseModel.testCountryPopulation(helloWorldTcParam.getSutFederate(), helloWorldTcParam.getPopulationGrowthValue())) {
                 throw new TcFailed("Population incorrectly calculated");
