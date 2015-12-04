@@ -54,6 +54,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
     private AttributeHandle                                _attributeIdName;
     private AttributeHandle                                _attributeIdPopulation;
     private boolean                                        receivedInteraction = false;
+    private boolean                                        receivedReflect = false;
     private EncoderFactory                                 _encoderFactory;
     private InteractionClassHandle                         messageId;
     private IVCT_RTIambassador                             ivct_rti;
@@ -138,7 +139,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
     /**
      * @return false if a message received, true otherwise
      */
-    public boolean getMessageStatus() {
+    public boolean getInteractionMessageStatus() {
         for (int j = 0; j < 100; j++) {
             if (this.receivedInteraction) {
                 return false;
@@ -153,6 +154,23 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
         return true;
     }
 
+    /**
+     * @return false if a message received, true otherwise
+     */
+    public boolean getReflectMessageStatus() {
+        for (int j = 0; j < 100; j++) {
+            if (this.receivedReflect) {
+                return false;
+            }
+            try {
+                Thread.sleep(20);
+            }
+            catch (final InterruptedException ex) {
+                continue;
+            }
+        }
+        return true;
+    }
 
     /**
      * @return
@@ -407,7 +425,9 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
             }
             catch (final DecoderException e) {
                 this.logger.error("Failed to decode incoming attribute");
+                return;
             }
+            receivedReflect = true;
         }
     }
 

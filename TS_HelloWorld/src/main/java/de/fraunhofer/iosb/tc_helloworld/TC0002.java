@@ -114,7 +114,7 @@ public class TC0002 extends AbstractTestCase {
             }
 
             // Check if a hello world message has arrived
-            if (helloWorldBaseModel.getMessageStatus()) {
+            if (helloWorldBaseModel.getInteractionMessageStatus()) {
                 throw new TcInconclusive("Did not receive any \"HelloWorld\" message");
             }
 
