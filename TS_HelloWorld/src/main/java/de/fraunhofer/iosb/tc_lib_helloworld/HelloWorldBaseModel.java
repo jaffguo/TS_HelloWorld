@@ -1,9 +1,7 @@
 package de.fraunhofer.iosb.tc_lib_helloworld;
 
 import de.fraunhofer.iosb.tc_lib.IVCT_BaseModel;
-import de.fraunhofer.iosb.tc_lib.IVCT_NullFederateAmbassador;
 import de.fraunhofer.iosb.tc_lib.IVCT_RTIambassador;
-import de.fraunhofer.iosb.tc_lib.IVCT_TcParam;
 import hla.rti1516e.AttributeHandle;
 import hla.rti1516e.AttributeHandleSet;
 import hla.rti1516e.AttributeHandleValueMap;
@@ -51,12 +49,12 @@ import org.slf4j.Logger;
 /**
  * @author mul (Fraunhofer IOSB)
  */
-public class HelloWorldBaseModel extends IVCT_NullFederateAmbassador implements IVCT_BaseModel {
+public class HelloWorldBaseModel extends IVCT_BaseModel {
+
     private AttributeHandle                                _attributeIdName;
     private AttributeHandle                                _attributeIdPopulation;
     private boolean                                        receivedInteraction = false;
     private EncoderFactory                                 _encoderFactory;
-    private FederateHandle                                 federateHandle;
     private InteractionClassHandle                         messageId;
     private IVCT_RTIambassador                             ivct_rti;
     private Logger                                         logger;
@@ -113,29 +111,13 @@ public class HelloWorldBaseModel extends IVCT_NullFederateAmbassador implements 
     /**
      * @param logger reference to a logger
      * @param ivct_rti reference to the RTI ambassador
+     * @param encoderFactory
      */
     public HelloWorldBaseModel(final Logger logger, final IVCT_RTIambassador ivct_rti) {
-        super(logger);
+        super(ivct_rti, logger);
         this.logger = logger;
         this.ivct_rti = ivct_rti;
         this._encoderFactory = ivct_rti.getEncoderFactory();
-    }
-
-
-    /**
-     * @param federateName federate name
-     * @param tcParam test case parameters
-     * @return federate handle
-     */
-    @Override
-    public FederateHandle initiateRti(final String federateName, final FederateAmbassador federateReference, final IVCT_TcParam tcParam) {
-        this.federateHandle = this.ivct_rti.initiateRti(tcParam, federateReference, federateName);
-        return this.federateHandle;
-    }
-
-
-    public FederateHandle getFederateHandle() {
-        return this.federateHandle;
     }
 
 
@@ -203,7 +185,6 @@ public class HelloWorldBaseModel extends IVCT_NullFederateAmbassador implements 
      * @param callbackModel
      * @param localSettingsDesignator
      */
-    @Override
     public void connect(final FederateAmbassador federateReference, final CallbackModel callbackModel, final String localSettingsDesignator) {
         try {
             this.ivct_rti.connect(federateReference, callbackModel, localSettingsDesignator);
@@ -212,12 +193,6 @@ public class HelloWorldBaseModel extends IVCT_NullFederateAmbassador implements 
             // TODO Auto-generated catch block
             ex.printStackTrace();
         }
-    }
-
-
-    @Override
-    public void terminateRti(final IVCT_TcParam tcParam) {
-        this.ivct_rti.terminateRti(tcParam);
     }
 
 
