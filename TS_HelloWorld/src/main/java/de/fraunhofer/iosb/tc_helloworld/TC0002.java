@@ -42,7 +42,7 @@ public class TC0002 extends AbstractTestCase {
 
 
     /**
-     * @param args
+     * @param args the parameter line arguments
      */
     public static void main(final String[] args) {
 

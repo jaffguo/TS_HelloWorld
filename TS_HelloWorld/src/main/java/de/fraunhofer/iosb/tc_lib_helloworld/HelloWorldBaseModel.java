@@ -112,7 +112,6 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
     /**
      * @param logger reference to a logger
      * @param ivct_rti reference to the RTI ambassador
-     * @param encoderFactory
      */
     public HelloWorldBaseModel(final Logger logger, final IVCT_RTIambassador ivct_rti) {
         super(ivct_rti, logger);
@@ -123,7 +122,8 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @return
+     * @param federateHandle the federate handle
+     * @return the federate name or null
      */
     public String getFederateName(final FederateHandle federateHandle) {
         try {
@@ -174,7 +174,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
     }
 
     /**
-     * @return
+     * @return the message received
      */
     public String getMessage() {
         this.receivedInteraction = false;
@@ -183,7 +183,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @return
+     * @return the parameter id text received
      */
     public ParameterHandle getParameterIdText() {
         return this.parameterIdText;
@@ -191,7 +191,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @return
+     * @return the message id
      */
     public InteractionClassHandle getMessageId() {
         return this.messageId;
@@ -199,9 +199,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @param federateReference
-     * @param callbackModel
-     * @param localSettingsDesignator
+     * {@inheritDoc}
      */
     public void connect(final FederateAmbassador federateReference, final CallbackModel callbackModel, final String localSettingsDesignator) {
         try {
@@ -215,7 +213,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @param sleepTime
+     * @param sleepTime time to sleep
      * @return true means problem, false is ok
      */
     public boolean sleepFor(final long sleepTime) {
@@ -332,13 +330,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @param interactionClass
-     * @param theParameters
-     * @param userSuppliedTag
-     * @param sentOrdering
-     * @param theTransport
-     * @param receiveInfo
-     * @throws FederateInternalError
+     * {@inheritDoc}
      */
     @Override
     public void receiveInteraction(final InteractionClassHandle interactionClass, final ParameterHandleValueMap theParameters, final byte[] userSuppliedTag, final OrderType sentOrdering, final TransportationTypeHandle theTransport, final SupplementalReceiveInfo receiveInfo) throws FederateInternalError {
@@ -347,13 +339,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @param interactionClass
-     * @param theParameters
-     * @param userSuppliedTag
-     * @param sentOrdering
-     * @param theTransport
-     * @param receiveInfo
-     * @throws FederateInternalError
+     * {@inheritDoc}
      */
     @Override
     public void receiveInteraction(final InteractionClassHandle interactionClass, final ParameterHandleValueMap theParameters, final byte[] userSuppliedTag, final OrderType sentOrdering, final TransportationTypeHandle theTransport, final LogicalTime theTime, final OrderType receivedOrdering, final SupplementalReceiveInfo receiveInfo) throws FederateInternalError {
@@ -362,13 +348,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
 
 
     /**
-     * @param interactionClass
-     * @param theParameters
-     * @param userSuppliedTag
-     * @param sentOrdering
-     * @param theTransport
-     * @param receiveInfo
-     * @throws FederateInternalError
+     * {@inheritDoc}
      */
     @Override
     public void receiveInteraction(final InteractionClassHandle interactionClass, final ParameterHandleValueMap theParameters, final byte[] userSuppliedTag, final OrderType sentOrdering, final TransportationTypeHandle theTransport, final LogicalTime theTime, final OrderType receivedOrdering, final MessageRetractionHandle retractionHandle, final SupplementalReceiveInfo receiveInfo) throws FederateInternalError {
