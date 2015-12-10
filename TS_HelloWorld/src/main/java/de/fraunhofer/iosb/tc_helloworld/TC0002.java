@@ -78,7 +78,6 @@ public class TC0002 extends AbstractTestCase {
 
     @Override
     protected void performTest() throws TcInconclusive, TcFailed {
-        this.federateHandle = helloWorldBaseModel.getFederateHandle();
 
         // Allow time to work and get some reflect values.
         if (helloWorldBaseModel.sleepFor(helloWorldTcParam.getSleepTimeWait())) {
