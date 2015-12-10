@@ -17,9 +17,9 @@ import org.slf4j.LoggerFactory;
  * @author mul (Fraunhofer IOSB)
  */
 public class TC0001 extends AbstractTestCase {
-    FederateHandle                              federateHandle;
     private static Logger                       logger                         = LoggerFactory.getLogger(TC0001.class);
     private String                              federateName                   = "IVCT";
+    FederateHandle                              federateHandle;
 
     // Build test case parameters to use
     final static HelloWorldTcParam              helloWorldTcParam              = new HelloWorldTcParam();
@@ -32,7 +32,7 @@ public class TC0001 extends AbstractTestCase {
 
 
     /**
-     * @param args
+     * @param args the parameter line arguments
      */
     public static void main(final String[] args) {
 
@@ -69,8 +69,6 @@ public class TC0001 extends AbstractTestCase {
 
     @Override
     protected void performTest() throws TcInconclusive, TcFailed {
-
-        this.federateHandle = helloWorldBaseModel.getFederateHandle();
 
         // Allow time to work and get some reflect values.
         if (helloWorldBaseModel.sleepFor(helloWorldTcParam.getSleepTimeWait())) {
