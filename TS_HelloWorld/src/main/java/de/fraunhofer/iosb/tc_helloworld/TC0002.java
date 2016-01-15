@@ -1,5 +1,5 @@
 /*
-Copyright 2015, [name of copyright owner, Johannes Mulder (Fraunhofer IOSB)"]
+Copyright 2015, Johannes Mulder (Fraunhofer IOSB)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -61,7 +61,11 @@ public class TC0002 extends AbstractTestCase {
      * @param args the parameter line arguments
      */
     public static void main(final String[] args) {
+        new TC0002().execute(helloWorldTcParam, helloWorldBaseModel, logger);
+    }
 
+    @Override
+    protected void logTestPurpose() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
         stringBuilder.append("---------------------------------------------------------------------\n");
@@ -74,11 +78,9 @@ public class TC0002 extends AbstractTestCase {
         final String testPurpose = stringBuilder.toString();
 
         logger.info(testPurpose);
-
-        new TC0002().execute(helloWorldTcParam, helloWorldBaseModel, logger);
     }
 
-
+    
     @Override
     protected void preambleAction() throws TcInconclusive {
 
