@@ -1,3 +1,19 @@
+/*
+Copyright 2015, [name of copyright owner, Johannes Mulder (Fraunhofer IOSB)"]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 package de.fraunhofer.iosb.tc_lib_helloworld;
 
 import de.fraunhofer.iosb.tc_lib.IVCT_BaseModel;
@@ -59,6 +75,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
     private InteractionClassHandle                         messageId;
     private IVCT_RTIambassador                             ivct_rti;
     private Logger                                         logger;
+    private ParameterHandle                                parameterIdSender;
     private ParameterHandle                                parameterIdText;
     private String                                         message;
     private final Map<ObjectInstanceHandle, CountryValues> knownObjects        = new HashMap<ObjectInstanceHandle, CountryValues>();
@@ -189,6 +206,13 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
         return this.parameterIdText;
     }
 
+    /**
+     * @return the parameter id text received
+     */
+    public ParameterHandle getParameterIdSender() {
+        return this.parameterIdSender;
+    }
+
 
     /**
      * @return the message id
@@ -237,6 +261,7 @@ public class HelloWorldBaseModel extends IVCT_BaseModel {
         try {
             this.messageId = this.ivct_rti.getInteractionClassHandle("Communication");
             this.parameterIdText = this.ivct_rti.getParameterHandle(this.messageId, "Message");
+            this.parameterIdSender = this.ivct_rti.getParameterHandle(this.messageId, "Sender");
         }
         catch (NameNotFound | FederateNotExecutionMember | NotConnected | RTIinternalError | InvalidInteractionClassHandle ex1) {
             this.logger.error("Cannot get interaction class handle or parameter handle");
