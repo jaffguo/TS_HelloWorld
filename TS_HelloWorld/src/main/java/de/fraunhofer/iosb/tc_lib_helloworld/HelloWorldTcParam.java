@@ -17,9 +17,15 @@ limitations under the License.
 package de.fraunhofer.iosb.tc_lib_helloworld;
 
 import de.fraunhofer.iosb.tc_lib.IVCT_TcParam;
+import de.fraunhofer.iosb.tc_lib.TcInconclusive;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -30,27 +36,51 @@ import java.net.URL;
 public class HelloWorldTcParam implements IVCT_TcParam {
     // Get test case parameters
     //      use some constants for this example till we get params from a file
-    private final String federation_name    = "HelloWorld";
-    private final String rtiHost            = "localhost";
-    private final String settingsDesignator = "crcAddress=" + this.rtiHost;
+    private String federation_name;
+    private String rtiHost;
+    private String settingsDesignator;
     private final int    fileNum            = 1;
     private File[]       fddFiles           = new File[this.fileNum];
     private URL[]        urls               = new URL[this.fileNum];
     private final String basePath           = "build/resources/main/";
     private long         sleepTimeCycle     = 1000;
     private long         sleepTimeWait      = 3000;
-    private final String sutFederate        = "A";
+    private String sutFederate;
 
 
-    public HelloWorldTcParam() {
+    public HelloWorldTcParam(final String paramJson) throws TcInconclusive {
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject;
+		try {
+			jsonObject = (JSONObject) jsonParser.parse(paramJson);
+			// get a String from the JSON object
+			federation_name =  (String) jsonObject.get("federationName");
+			if (federation_name == null) {
+                throw new TcInconclusive("The key \"federationName\" was not found");
+			}
+			// get a String from the JSON object
+			rtiHost =  (String) jsonObject.get("rtiHostName");
+			if (rtiHost == null) {
+                throw new TcInconclusive("The key \"rtiHostName\" was not found");
+			}
+			settingsDesignator = "crcAddress=" + this.rtiHost;
+			// get a String from the JSON object
+			sutFederate =  (String) jsonObject.get("sutFederateName");
+			if (sutFederate == null) {
+                throw new TcInconclusive("The key \"sutFederateName\" was not found");
+			}
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
         this.fddFiles[0] = new File(this.basePath + "HelloWorld.xml");
         for (int i = 0; i < this.fileNum; i++) {
             try {
                 this.urls[i] = this.fddFiles[i].toURI().toURL();
             }
             catch (final MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                throw new TcInconclusive("HelloWorldTcParam constructor: MalformedURLException");
             }
         }
     }
