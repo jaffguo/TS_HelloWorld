@@ -146,7 +146,7 @@ public class TC0002 extends AbstractTestCase {
 
             // Check if a hello world message has arrived
             if (helloWorldBaseModel.getInteractionMessageStatus()) {
-                throw new TcInconclusive("Did not receive any \"HelloWorld\" message");
+                throw new TcInconclusive("Did not receive any HelloWorld message");
             }
 
             // Get the message
@@ -155,7 +155,7 @@ public class TC0002 extends AbstractTestCase {
 
             // Test the value of the message
             if (messageReceived.equals(testMessage) == false) {
-                throw new TcFailed("Incorrect message received: got \"" + messageReceived + "\" expected \"" + testMessage + "\"");
+                throw new TcFailed("Incorrect message received: got  " + messageReceived + "  expected  " + testMessage);
             }
 
             // Allow for some time to pass

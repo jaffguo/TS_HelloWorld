@@ -108,7 +108,7 @@ public class TC0001 extends AbstractTestCase {
 
             // Check if a hello world message has arrived
             if (helloWorldBaseModel.getReflectMessageStatus()) {
-                throw new TcInconclusive("Did not receive any \"Population\" message");
+                throw new TcInconclusive("Did not receive any Population message");
             }
 
             // Test the population increase based on the previous and the current values within a percent range tolerance
