@@ -40,7 +40,6 @@ public class HelloWorldTcParam implements IVCT_TcParam {
     private String rtiHost;
     private String settingsDesignator;
     private final int    fileNum            = 1;
-    private File[]       fddFiles           = new File[this.fileNum];
     private URL[]        urls               = new URL[this.fileNum];
     private final String basePath           = "build/resources/main/";
     private long         sleepTimeCycle     = 1000;
