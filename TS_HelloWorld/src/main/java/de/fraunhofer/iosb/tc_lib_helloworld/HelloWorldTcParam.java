@@ -55,18 +55,18 @@ public class HelloWorldTcParam implements IVCT_TcParam {
 			// get a String from the JSON object
 			federation_name =  (String) jsonObject.get("federationName");
 			if (federation_name == null) {
-                throw new TcInconclusive("The key \"federationName\" was not found");
+                throw new TcInconclusive("The key  federationName  was not found");
 			}
 			// get a String from the JSON object
 			rtiHost =  (String) jsonObject.get("rtiHostName");
 			if (rtiHost == null) {
-                throw new TcInconclusive("The key \"rtiHostName\" was not found");
+                throw new TcInconclusive("The key  rtiHostName  was not found");
 			}
 			settingsDesignator = "crcAddress=" + this.rtiHost;
 			// get a String from the JSON object
 			sutFederate =  (String) jsonObject.get("sutFederateName");
 			if (sutFederate == null) {
-                throw new TcInconclusive("The key \"sutFederateName\" was not found");
+                throw new TcInconclusive("The key  sutFederateName  was not found");
 			}
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
